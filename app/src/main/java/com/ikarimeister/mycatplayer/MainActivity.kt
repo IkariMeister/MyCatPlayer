@@ -1,19 +1,19 @@
 package com.ikarimeister.mycatplayer
 
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val button: Button = findViewById(R.id.button)
-        val message: EditText = findViewById(R.id.message)
-        button.setOnClickListener { toast("Hello ${message.text}") }
+        val recycler: RecyclerView = findViewById(R.id.recycler)
+        val adapter = MediaItemAdapter()
+        recycler.adapter = adapter
+        adapter.items = getItems()
     }
 
     private fun toast(message: String) {
