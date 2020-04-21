@@ -33,5 +33,6 @@ class MediaItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
                 .load(item.url)
                 .into(itemView.findViewById(R.id.mediaThumb))
         itemView.findViewById<TextView>(R.id.mediaTitle).text = item.title
+        itemView.setOnClickListener { toast(item.title) }
     }
 }
