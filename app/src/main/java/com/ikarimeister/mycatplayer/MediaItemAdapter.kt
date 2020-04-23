@@ -28,13 +28,13 @@ class MediaItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     private val itemBinding: ViewMediaItemBinding = ViewMediaItemBinding.bind(view)
 
-    fun bind(item: MediaItem) {
-        itemBinding.mediaThumb.loadUrl(item.url)
-        itemBinding.mediaTitle.text = item.title
-        itemView.setOnClickListener { toast(item.title) }
-        itemBinding.mediaVideoIndicator.visibility = when (item.type) {
+    fun bind(item: MediaItem) = with(itemBinding) {
+        mediaThumb.loadUrl(item.url)
+        mediaTitle.text = item.title
+        mediaVideoIndicator.visibility = when (item.type) {
             MediaType.VIDEO -> View.VISIBLE
             MediaType.PHOTO -> View.GONE
         }
+        itemView.setOnClickListener { toast(item.title) }
     }
 }
