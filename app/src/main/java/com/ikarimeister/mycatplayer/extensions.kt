@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
 
 inline fun Context.toast(message: String) =
@@ -13,5 +14,5 @@ inline fun Context.toast(message: String) =
 inline fun RecyclerView.ViewHolder.toast(message: String) =
         this.itemView.context.toast(message)
 
-inline fun ViewGroup.inflate(resId: Int): View =
+inline fun ViewGroup.inflate(@LayoutRes resId: Int): View =
         LayoutInflater.from(this.context).inflate(resId, this, false)
