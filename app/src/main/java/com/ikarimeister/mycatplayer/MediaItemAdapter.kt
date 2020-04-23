@@ -31,5 +31,9 @@ class MediaItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         itemView.findViewById<ImageView>(R.id.mediaThumb).loadUrl(item.url)
         itemView.findViewById<TextView>(R.id.mediaTitle).text = item.title
         itemView.setOnClickListener { toast(item.title) }
+        itemView.findViewById<ImageView>(R.id.mediaVideoIndicator).visibility = when (item.type) {
+            MediaType.VIDEO -> View.VISIBLE
+            MediaType.PHOTO -> View.GONE
+        }
     }
 }
