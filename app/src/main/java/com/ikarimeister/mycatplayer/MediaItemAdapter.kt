@@ -1,6 +1,5 @@
 package com.ikarimeister.mycatplayer
 
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -15,7 +14,7 @@ class MediaItemAdapter : RecyclerView.Adapter<MediaItemViewHolder>() {
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MediaItemViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.view_media_item, parent, false)
+        val view = parent.inflate(R.layout.view_media_item)
         return MediaItemViewHolder(view)
     }
 
