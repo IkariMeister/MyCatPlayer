@@ -19,4 +19,5 @@ inline fun RecyclerView.ViewHolder.toast(message: String) =
 inline fun ViewGroup.inflate(@LayoutRes resId: Int): View =
         LayoutInflater.from(this.context).inflate(resId, this, false)
 
-inline fun ImageView.loadUrl(url:String) = Glide.with(this).load(url).into(this)
+inline fun ImageView.loadUrl(url: String) =
+        Glide.with(this).load(url).into(this)
