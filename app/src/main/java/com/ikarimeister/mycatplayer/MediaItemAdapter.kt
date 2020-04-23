@@ -35,6 +35,6 @@ class MediaItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             MediaType.VIDEO -> View.VISIBLE
             MediaType.PHOTO -> View.GONE
         }
-        itemView.setOnClickListener { toast(item.title) }
+        root.setOnClickListener { toast(item.title) }
     }
 }
