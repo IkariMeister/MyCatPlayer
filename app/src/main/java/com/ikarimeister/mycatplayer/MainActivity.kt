@@ -2,15 +2,16 @@ package com.ikarimeister.mycatplayer
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.*
+import com.ikarimeister.mycatplayer.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        val binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         val adapter = MediaItemAdapter()
-        recycler.adapter = adapter
+        binding.recycler.adapter = adapter
         adapter.items = getItems()
     }
 }
