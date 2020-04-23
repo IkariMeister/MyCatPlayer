@@ -10,8 +10,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val adapter = MediaItemAdapter()
-        binding.recycler.adapter = adapter
-        adapter.items = getItems()
+        binding.recycler.adapter = MediaItemAdapter(getItems()) { toast(it.title) }
     }
 }

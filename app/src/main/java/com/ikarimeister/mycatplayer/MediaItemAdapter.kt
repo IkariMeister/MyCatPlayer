@@ -5,8 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ikarimeister.mycatplayer.databinding.ViewMediaItemBinding
 
-class MediaItemAdapter : RecyclerView.Adapter<MediaItemViewHolder>() {
-    var items: List<MediaItem> = emptyList()
+class MediaItemAdapter(
+    elements: List<MediaItem>,
+    var listener: (mediaItem: MediaItem) -> Unit
+) : RecyclerView.Adapter<MediaItemViewHolder>() {
+    var items: List<MediaItem> = elements
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -20,7 +23,7 @@ class MediaItemAdapter : RecyclerView.Adapter<MediaItemViewHolder>() {
     override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: MediaItemViewHolder, position: Int) {
-        holder.bind(items[position])
+        holder.bind(items[position], listener)
     }
 }
 
@@ -28,13 +31,13 @@ class MediaItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     private val itemBinding: ViewMediaItemBinding = ViewMediaItemBinding.bind(view)
 
-    fun bind(item: MediaItem) = with(itemBinding) {
+    fun bind(item: MediaItem, listener: (mediaItem: MediaItem) -> Unit) = with(itemBinding) {
         mediaThumb.loadUrl(item.url)
         mediaTitle.text = item.title
         mediaVideoIndicator.visibility = when (item.type) {
             MediaType.VIDEO -> View.VISIBLE
             MediaType.PHOTO -> View.GONE
         }
-        root.setOnClickListener { toast(item.title) }
+        root.setOnClickListener { listener(item) }
     }
 }
