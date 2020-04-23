@@ -2,9 +2,8 @@ package com.ikarimeister.mycatplayer
 
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.view_media_item.view.*
 
 class MediaItemAdapter : RecyclerView.Adapter<MediaItemViewHolder>() {
     var items: List<MediaItem> = emptyList()
@@ -28,10 +27,10 @@ class MediaItemAdapter : RecyclerView.Adapter<MediaItemViewHolder>() {
 class MediaItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     fun bind(item: MediaItem) {
-        itemView.findViewById<ImageView>(R.id.mediaThumb).loadUrl(item.url)
-        itemView.findViewById<TextView>(R.id.mediaTitle).text = item.title
+        itemView.mediaThumb.loadUrl(item.url)
+        itemView.mediaTitle.text = item.title
         itemView.setOnClickListener { toast(item.title) }
-        itemView.findViewById<ImageView>(R.id.mediaVideoIndicator).visibility = when (item.type) {
+        itemView.mediaVideoIndicator.visibility = when (item.type) {
             MediaType.VIDEO -> View.VISIBLE
             MediaType.PHOTO -> View.GONE
         }
