@@ -8,7 +8,7 @@ import com.ikarimeister.mycatplayer.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private val adapter by lazy { MediaItemAdapter(getItems()) { toast(it.title) } }
+    private val adapter by lazy { MediaItemAdapter(MediaProvider.getItems()) { toast(it.title) } }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        adapter.items = getItems().let { media ->
+        adapter.items = MediaProvider.getItems().let { media ->
             when (item.itemId) {
                 R.id.filter_all -> media
                 R.id.filter_photos -> media.filter { it.type == MediaType.PHOTO }
