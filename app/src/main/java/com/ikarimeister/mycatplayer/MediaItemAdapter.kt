@@ -2,6 +2,7 @@ package com.ikarimeister.mycatplayer
 
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -28,9 +29,7 @@ class MediaItemAdapter : RecyclerView.Adapter<MediaItemViewHolder>() {
 class MediaItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     fun bind(item: MediaItem) {
-        Glide.with(itemView.context)
-                .load(item.url)
-                .into(itemView.findViewById(R.id.mediaThumb))
+        itemView.findViewById<ImageView>(R.id.mediaThumb).loadUrl(item.url)
         itemView.findViewById<TextView>(R.id.mediaTitle).text = item.title
         itemView.setOnClickListener { toast(item.title) }
     }
