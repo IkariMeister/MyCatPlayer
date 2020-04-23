@@ -7,7 +7,7 @@ import com.ikarimeister.mycatplayer.databinding.ViewMediaItemBinding
 
 class MediaItemAdapter(
     elements: List<MediaItem>,
-    var listener: (mediaItem: MediaItem) -> Unit
+    var listener: (MediaItem) -> Unit
 ) : RecyclerView.Adapter<MediaItemViewHolder>() {
     var items: List<MediaItem> = elements
         set(value) {
@@ -31,7 +31,7 @@ class MediaItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     private val itemBinding: ViewMediaItemBinding = ViewMediaItemBinding.bind(view)
 
-    fun bind(item: MediaItem, listener: (mediaItem: MediaItem) -> Unit) = with(itemBinding) {
+    fun bind(item: MediaItem, listener: (MediaItem) -> Unit) = with(itemBinding) {
         mediaThumb.loadUrl(item.url)
         mediaTitle.text = item.title
         mediaVideoIndicator.visibility = when (item.type) {
