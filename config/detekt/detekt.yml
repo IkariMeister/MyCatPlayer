@@ -276,7 +276,7 @@ formatting:
     active: true
     autoCorrect: true
   NoWildcardImports:
-    active: true
+    active: false
   PackageName:
     active: true
     autoCorrect: true
@@ -594,7 +594,7 @@ style:
   UseCheckOrError:
     active: false
   UseDataClass:
-    active: false
+    active: true
     excludeAnnotatedClasses: ''
     allowVars: false
   UseIfInsteadOfWhen:
@@ -608,6 +608,6 @@ style:
   VarCouldBeVal:
     active: false
   WildcardImport:
-    active: true
+    active: false
     excludes: '**/test/**,**/androidTest/**,**/*.Test.kt,**/*.Spec.kt,**/*.Spek.kt'
     excludeImports: 'java.util.*,kotlinx.android.synthetic.*'
