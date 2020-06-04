@@ -6,14 +6,18 @@ import android.view.MenuItem
 import android.view.View
 import androidx.annotation.UiThread
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.ikarimeister.mycatplayer.databinding.ActivityMainBinding
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
 
     private val adapter by lazy { MediaItemAdapter { toast(it.title) } }
 
-    private fun loadData(f: (List<MediaItem>) -> Unit) = GlobalScope.launch(Dispatchers.Main) {
+    private fun loadData(f: (List<MediaItem>) -> Unit) = lifecycleScope.launch {
         binding.progress.visibility = View.VISIBLE
         val elements = withContext(Dispatchers.IO) { async { MediaProvider.getItems() } }
         f(elements.await())
