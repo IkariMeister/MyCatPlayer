@@ -45,16 +45,24 @@ class MainActivity : AppCompatActivity() {
 
     @UiThread
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        loadData { items ->
-            adapter.items = items.let { media ->
-                when (item.itemId) {
-                    R.id.filter_all -> media
-                    R.id.filter_photos -> media.filter { it.type == MediaType.PHOTO }
-                    R.id.filter_videos -> media.filter { it.type == MediaType.VIDEO }
-                    else -> media
+        val filter = when (item.itemId) {
+            R.id.filter_all -> NoFilter
+            R.id.filter_photos -> TypeFilter(MediaType.PHOTO)
+            R.id.filter_videos -> TypeFilter(MediaType.VIDEO)
+            else -> NoFilter
+        }
+        updateFilter(filter)
+        return super.onOptionsItemSelected(item)
+    }
+
+    fun updateFilter(filter: Filter) {
+        loadData {
+            adapter.items = it.let {
+                when (filter) {
+                    NoFilter -> it
+                    is TypeFilter -> it.filter { it.type == filter.type }
                 }
             }
         }
-        return super.onOptionsItemSelected(item)
     }
 }
