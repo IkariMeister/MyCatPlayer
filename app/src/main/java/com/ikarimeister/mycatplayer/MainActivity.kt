@@ -15,7 +15,11 @@ import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
 
-    private val adapter by lazy { MediaItemAdapter { toast(it.title) } }
+    private val adapter by lazy {
+        MediaItemAdapter {
+            startActivity<DetailActivity>(Pair(DetailActivity.EXTRA_ID, it.id))
+        }
+    }
 
     private fun loadData(f: (List<MediaItem>) -> Unit) = lifecycleScope.launch {
         binding.progress.visibility = View.VISIBLE
